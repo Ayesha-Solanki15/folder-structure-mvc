@@ -4,6 +4,7 @@ import { PORT } from "./config/serverConfig.js";
 
 import apiRouter from "./routes/apiRoutes.js";
 import connectToDB from "./config/dbConfig.js";
+import cookieParser from "cookie-parser";
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(morgan("combined"));
 app.use(express.json());
 app.use(express.text());
 app.use(express.urlencoded());
+app.use(cookieParser());
 //use function is used to call middlewares
 // It can also be used to call route function
 // app.use("/tweets", tweetRouter); // if the req url looks like  localhost:3000/tweets, then tweetRouter will be called and whatever comes after /tweets will be handled by tweetRouter
