@@ -1,9 +1,22 @@
-import { createTweet as createTweetService } from "../services/tweetService";
+import {
+  createTweet as createTweetService,
+  getTweets as getTweetsService,
+} from "../services/tweetService";
 
-export const getTweets = (req, res) => {
-  return res.json({
-    message: "Hello from tweets",
-  });
+export const getTweets = async (req, res) => {
+  try {
+    const response = await getTweetsService();
+    return res.status(200).json({
+      success: true,
+      message: "Tweets retrieved successfully",
+      data: response,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Failed to retrieve tweets",
+    });
+  }
 };
 
 export const getTweetById = (req, res) => {
